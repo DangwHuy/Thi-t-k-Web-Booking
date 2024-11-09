@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="ThePlaza.css" />
+    <title>make a reservation in advance| ĐăngHuy</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__header">
+        <div class="nav__logo">
+          <a href="#">DangHuy&G5</a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="/index.html">HOME</a></li>
+        <li><a href="About US/About.html">ABOUT US</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+      <div class="nav__btns">
+        <button class="btn"><i class="ri-search-line"></i></button>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="container__left">
+        <h1>Enjoy Your Holidays</h1>
+        <style>
+            /* Existing styles for cart container */
+            #cart-container {
+                width: 300px;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                position: fixed; /* Fix the position to the right side */
+                top: 20%;
+                right: -320px; /* Start off hidden to the right */
+                transition: right 0.3s ease; /* Smooth transition */
+            }
+        
+            /* Add button styles */
+            #add-item {
+                width: 100%;
+                padding: 10px;
+                background-color: #47b461;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+        
+            #add-item:hover {
+                background-color: #38a04e;
+            }
+        
+            /* Cart content styles */
+            #cart {
+                margin-top: 20px;
+            }
+        
+            .cart-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 1px solid #ddd;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+            }
+        
+            .cart-item button {
+                background-color: #dc3545;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                padding: 5px;
+                cursor: pointer;
+            }
+        
+            .cart-item button:hover {
+                background-color: #c82333;
+            }
+        
+            #total {
+                font-weight: bold;
+                margin-top: 10px;
+                text-align: right;
+            }
+        
+            /* Button to open cart */
+            #cart-toggle {
+                width: 50px;
+                height: 50px;
+                background-color: #547c9b;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                position: fixed;
+                bottom: 20px;
+                right: 50px;
+                cursor: pointer;
+                font-size: 24px;
+                display: none; /* Hidden by default */
+            }
+        
+            #cart-toggle:hover {
+                background-color: #0056b3;
+            }
+        </style>
+        </head>
+        <body>
+            <button id="add-item">Giá Phòng</button>
+        
+            <!-- Hidden cart container on the right -->
+            <div id="cart-container">
+                <div id="cart">Book Now</div>
+                <div id="total">Tổng: 0 VND</div>
+            </div>
+        
+            <!-- Floating button to toggle cart -->
+            <button id="cart-toggle"><i class="ri-shopping-bag-line"></i></button>
+        
+            <script>
+                const addItemBtn = document.getElementById('add-item');
+                const cartContainer = document.getElementById('cart-container');
+                const cartToggle = document.getElementById('cart-toggle');
+                const cart = document.getElementById('cart');
+                const totalDisplay = document.getElementById('total');
+        
+                let cartItems = [];
+        
+                // Show cart when clicking the "Giá Phòng" button
+                addItemBtn.addEventListener('click', () => {
+                    const newItem = {
+                        name: 'The Plaza Hotel',
+                        price: 2490000
+                    };
+                    cartItems.push(newItem);
+                    renderCart();
+                    showCart();
+                });
+        
+                // Render the cart items
+                function renderCart() {
+                    cart.innerHTML = '';
+                    let total = 0;
+        
+                    cartItems.forEach((item, index) => {
+                        total += item.price;
+        
+                        const cartItem = document.createElement('div');
+                        cartItem.classList.add('cart-item');
+                        cartItem.innerHTML = `
+                            <span>${item.name} - ${item.price.toLocaleString()} VND</span>
+                            <button onclick="removeItem(${index})">Xóa</button>
+                        `;
+                        cart.appendChild(cartItem);
+                    });
+        
+                    totalDisplay.textContent = `Tổng: ${total.toLocaleString()} VND`;
+                }
+        
+                // Remove an item from the cart
+                function removeItem(index) {
+                    cartItems.splice(index, 1);
+                    renderCart();
+                }
+        
+                // Show the cart and toggle the cart button visibility
+                function showCart() {
+                    cartContainer.style.right = '20px';
+                    cartToggle.style.display = 'block'; // Show the cart toggle button
+                }
+        
+                // Toggle the cart visibility on button click
+                cartToggle.addEventListener('click', () => {
+                    if (cartContainer.style.right === '20px') {
+                        cartContainer.style.right = '-320px'; // Hide the cart
+                    } else {
+                        cartContainer.style.right = '20px'; // Show the cart
+                    }
+                });
+            </script>
+      </div>
+      <div class="container__right">
+        <div class="images">
+          <img
+            src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/e1/a6/8c/the-plaza.jpg?w=700&h=-1&s=1"
+            alt="The Plaza Hotel"
+            alt="tent-1"
+            class="tent-1"
+          />
+          <img
+            src="https://cf2.bstatic.com/xdata/images/hotel/max1024x768/496718912.jpg?k=d86c36963196d6be7f12c39a2ea3756daf4f752f676f8727b24fc0297e2d7a1e&o=&hp=1"
+            alt="tent-2"
+            class="tent-2"
+          />
+          <img
+            src="https://images.ctfassets.net/1aemqu6a6t65/3gvdX6uKHaiHIpHk7RrxXR/f4e5c70cad1a38d9ab80fa3e2ac2f017/6_the_palm_court_interior?w=1200&h=800&q=75"
+            alt="The Plaza Hotel"
+            alt="tent-1"
+            class="tent-1"
+          />
+        </div>
+        <div class="content">
+          <h4>15m2 | 2 beds</h4>
+          <h2>VIP rooms</h2>
+          <h3>highest level of service</h3>
+          <p>
+            VIP rooms in hotels are specially designed to offer a premium,
+            luxurious experience, typically catering to important guests or
+            those seeking the highest level of service.VIP rooms are more
+            spacious than regular rooms, often featuring separate living and
+            sleeping areas, and sometimes a private workspace. VIP amenities
+            include a king-size bed with high-quality linens, a large
+            flat-screen TV, premium sound systems, and an espresso coffee maker.
+            The bathroom is fully equipped, often featuring a jacuzzi or double
+            bathtub, along with luxury toiletries and plush bathrobes. In
+            addition, VIP guests typically enjoy special services such as a
+            private reception, 24/7 room service, and access to exclusive areas
+            like VIP lounges, conference rooms, or other premium hotel
+            amenities. Some VIP rooms even offer a private balcony or terrace
+            with exclusive views.
+          </p>
+        </div>
+      </div>
+      <div class="location">
+        <span><i class="ri-map-pin-2-fill"></i></span>
+        OUR LOCATION
+      </div>
+      <div class="socials">
+        <span>
+          <a href="https://www.facebook.com/phandanghuycute/"
+            ><i class="ri-facebook-fill"></i
+          ></a>
+        </span>
+        <span>
+          <a href="https://www.instagram.com/phandanghuycute/"
+            ><i class="ri-instagram-line"></i
+          ></a>
+        </span>
+        <span>
+          <a href="#"><i class="ri-twitter-fill"></i></a>
+        </span>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="ThePlaza.js"></script>
+  </body>
+</html>

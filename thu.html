@@ -1,0 +1,135 @@
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* General styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 100vh;
+        background-color: #f5f5f5;
+      }
+
+      /* Styling for the button */
+      .btn {
+        font-size: 24px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+      }
+
+      /* Icon styles */
+      .btn i {
+        font-size: 24px;
+      }
+
+      /* Cart Menu - Initially hidden */
+      #cart-menu {
+        position: fixed;
+        top: 0;
+        right: -350px; /* Hide menu initially */
+        width: 350px;
+        height: 100%;
+        background-color: #fff;
+        border-left: 2px solid #ddd;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: right 0.3s ease-in-out;
+        z-index: 50;
+      }
+
+      #cart-menu.open {
+        right: 0; /* Show the menu when "open" class is added */
+      }
+
+      /* Cart item styles */
+      .cart-item {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        margin-bottom: 10px;
+      }
+
+      #cart {
+        overflow-y: auto;
+        max-height: calc(100% - 100px); /* To make it scrollable */
+      }
+
+      #total {
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn" id="cart-btn">
+      <i class="ri-shopping-bag-line"></i>
+    </button>
+
+    <!-- Cart menu -->
+    <div id="cart-menu">
+      <div id="cart"></div>
+      <div id="total">Tổng: 0 VND</div>
+    </div>
+
+    <script>
+      const cartBtn = document.getElementById("cart-btn");
+      const cartMenu = document.getElementById("cart-menu");
+      const cart = document.getElementById("cart");
+      const totalDisplay = document.getElementById("total");
+
+      let cartItems = [];
+
+      // Toggle the cart menu visibility
+      cartBtn.addEventListener("click", () => {
+        cartMenu.classList.toggle("open");
+      });
+
+      function renderCart() {
+        cart.innerHTML = "";
+        let total = 0;
+
+        cartItems.forEach((item, index) => {
+          total += item.price;
+
+          const cartItem = document.createElement("div");
+          cartItem.classList.add("cart-item");
+          cartItem.innerHTML = `
+                    <span>${
+                      item.name
+                    } - ${item.price.toLocaleString()} VND</span>
+                    <button onclick="removeItem(${index})">Xóa</button>
+                `;
+          cart.appendChild(cartItem);
+        });
+
+        totalDisplay.textContent = `Tổng: ${total.toLocaleString()} VND`;
+      }
+
+      function removeItem(index) {
+        cartItems.splice(index, 1);
+        renderCart();
+      }
+
+      // Add a sample item to the cart for demonstration
+      cartItems.push({ name: "Sản phẩm A", price: 100000 });
+      renderCart();
+    </script>
+  </body>
+</html>
