@@ -224,6 +224,32 @@ nav {
 .popular__content p {
   color: var(--text-light);
 }
+.Nhac {
+  display: flex; /* Sử dụng Flexbox */
+  flex-direction: column; /* Xếp chồng nội dung theo cột */
+  align-items: center; /* Căn giữa nội dung */
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  padding: 15px; /* Khoảng cách bên trong */
+  border: 1px solid #f3fcfc; /* Viền mỏng màu xám nhạt */
+  border-radius: 10px; /* Bo góc mềm mại */
+  background-color: #bcf1c5; /* Màu nền nhẹ */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+  width: 250px; /* Độ rộng cố định cho khối */
+  margin: 20px auto; /* Căn giữa toàn bộ khối */
+  font-family: "Arial", sans-serif; /* Font chữ đơn giản */
+}
+
+.Nhac p {
+  margin: 0 0 10px; /* Khoảng cách bên dưới tiêu đề */
+  font-size: 16px; /* Cỡ chữ vừa phải */
+  color: #c71414; /* Màu chữ tối để dễ đọc */
+}
+
+.Nhac audio {
+  width: 100%; /* Đặt chiều rộng audio bằng khối */
+  height: 20px; /* Chiều cao vừa đủ cho audio */
+  outline: none; /* Xóa viền mặc định */
+}
 /* --------------------------------------------------------------------Banner----------------------- */
 .banner {
   overflow: hidden;
